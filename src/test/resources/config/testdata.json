@@ -1,0 +1,29 @@
+{
+	"testdata": [
+		{
+			"testcasename": "uploadFileOnPreflight",
+			"execute": "yes",
+			"browser": "chrome",
+			"url": "https://preflight-cactusdk-paperpal-dev.paperpal.com/partner/demo-publisher/demo-journal",
+			"actualresult": "Paperpal Preflight",
+			"filename": "ABCDEFG"
+			
+		},
+		{
+			"testcasename": "123uploadFileOnPreflight",
+			"execute": "yes",
+			"browser": "friefox",
+			"url": "https://preflight-cactusdk-paperpal-dev.paperpal.com/partner/demo-publisher/demo-journal",
+			"actualresult": "123Paperpal Preflight",
+			"filename": "XYZ1234"
+		},
+		{
+			"testcasename": "testToCheck",
+			"execute": "yes",
+			"browser": "friefox",
+			"url": "https://preflight-cactusdk-paperpal-dev.paperpal.com/partner/demo-publisher/demo-journal",
+			"actualresult": "56789Paperpal Preflight",
+			"filename": "FGHYT56789"
+		}
+	]
+}
