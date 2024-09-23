@@ -1,4 +1,4 @@
-package aertripTestCases;
+package resources;
 
 import java.io.IOException;
 
@@ -11,11 +11,12 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import aertrip.Utils.ScreenshotUtils;
 import driver.Driver;
 import driver.DriverManager;
 
 
-public class Listeners extends BaseTest implements ITestListener {
+public class Listeners implements ITestListener {
 	ExtentReports extent = resources.ExtentReporterNG.getReportObject();
 	static ExtentTest test;
 	static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
@@ -34,6 +35,14 @@ public class Listeners extends BaseTest implements ITestListener {
 	public void onTestSuccess(ITestResult result) {
 		// TODO Auto-generated method stub
 		extentTest.get().log(Status.PASS, "Test Pass");
+		String filePath = null;
+		try {
+			filePath =ScreenshotUtils.getScreenshot(result.getMethod().getMethodName());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		test.addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
 	}
 
 	@Override
@@ -51,7 +60,7 @@ public class Listeners extends BaseTest implements ITestListener {
 
 		String filePath = null;
 		try {
-			filePath = getScreenshot(result.getMethod().getMethodName());
+			filePath =ScreenshotUtils.getScreenshot(result.getMethod().getMethodName());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

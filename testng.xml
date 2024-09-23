@@ -3,12 +3,12 @@
 <suite name="Suite">
 
 	<listeners>
-		<listener class-name="aertripTestCases.Listeners" />
+		<listener class-name="resources.Listeners" />
 	</listeners>
 
 	<test thread-count="5" name="Test">
 		<classes>
-			<class name="aertripTestCases.SearchFlights" />
+			<class name="aertripTestCases.BookFlight" />
 		</classes>
 	</test> <!--
 	Test -->

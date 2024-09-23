@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Aug 15 15:33:36 IST 2024</td>
+<td>Started on:</td><td>Mon Sep 16 15:33:59 IST 2024</td>
 </tr>
-<tr><td>Total time:</td><td>24 seconds (24991 ms)</td>
+<tr><td>Total time:</td><td>14 seconds (14740 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,9 +76,12 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='aertripTestCases.SearchFlights.searchFlights()'><b>searchFlights</b><br>Test class: aertripTestCases.SearchFlights</td>
-<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;com.aventstack.extentreports.ExtentTest.log(com.aventstack.extentreports.Status, String)&quot; because &quot;test&quot; is null
-	at aertripTestCases.SearchFlights.searchFlights(SearchFlights.java:35)
+<td title='aertripTestCases.BookFlight.searchFlights()'><b>searchFlights</b><br>Test class: aertripTestCases.BookFlight<br>Parameters: vchafle@planittesting.com, Vinay@123, 123456, Delhi, Hyderabad, Vinay, Chafle, Mr.</td>
+<td><div><pre>java.lang.AssertionError: Getting error while clicking on login link and the reason for error is Cannot invoke &quot;com.aventstack.extentreports.ExtentTest.pass(String)&quot; because &quot;pageObject.BasePage.test&quot; is null
+	at org.testng.Assert.fail(Assert.java:110)
+	at pageObject.BasePage.clickOn(BasePage.java:32)
+	at pageObject.LoginPage.loginApp(LoginPage.java:29)
+	at aertripTestCases.BookFlight.searchFlights(BookFlight.java:28)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -107,9 +110,12 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace634991000", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace634991000'><pre>java.lang.NullPointerException: Cannot invoke &quot;com.aventstack.extentreports.ExtentTest.log(com.aventstack.extentreports.Status, String)&quot; because &quot;test&quot; is null
-	at aertripTestCases.SearchFlights.searchFlights(SearchFlights.java:35)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1013728905", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1013728905'><pre>java.lang.AssertionError: Getting error while clicking on login link and the reason for error is Cannot invoke &quot;com.aventstack.extentreports.ExtentTest.pass(String)&quot; because &quot;pageObject.BasePage.test&quot; is null
+	at org.testng.Assert.fail(Assert.java:110)
+	at pageObject.BasePage.clickOn(BasePage.java:32)
+	at pageObject.LoginPage.loginApp(LoginPage.java:29)
+	at aertripTestCases.BookFlight.searchFlights(BookFlight.java:28)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -140,7 +146,7 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
 <td>0</td>
-<td>aertripTestCases.SearchFlights@477b4cdf</td></tr>
+<td>aertripTestCases.BookFlight@77c2494c</td></tr>
 </table><p>
 </body>
 </html>

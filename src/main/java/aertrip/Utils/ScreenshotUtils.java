@@ -44,6 +44,14 @@ public final class ScreenshotUtils {
 	private ScreenshotUtils() {
 	}
 	
+	public static String getScreenshot(String testCaseName) throws IOException {
+
+		TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
+		FileUtils.copyFile(source, file);
+		return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
+	}
 	
 	/**
 	 * Delete files from specific location
@@ -67,7 +75,7 @@ public final class ScreenshotUtils {
 
 	/**
 	 * This will delete Images from specific folder
-	 * @author Karan Parmar July 9, 2021
+	 * @author VInay July 9, 2021
 	 */
 	public static void deleteImages() {
 		// DELETE IMAGE FROM FOLDER
@@ -99,7 +107,7 @@ public final class ScreenshotUtils {
 	 * There is no temporary screenshot image generated here. If user needs separate screenshot image, they can construct
 	 * a new method. It is advisable to use this method for many reasons.
 	 * 
-	 * @author Karan Parmar 
+	 * @author Vinay 
 	 * Feb 03, 2021
 	 * @return Image in the form of Base64 String which can be appended directly to report
 	 */
@@ -110,7 +118,7 @@ public final class ScreenshotUtils {
 	
 	/**
 	 * This capture full page screenshot
-	 * @author Karan Parmar 
+	 * @author Vinay
 	 * July 09, 2021
 	 * @return
 	 */
@@ -161,7 +169,7 @@ public final class ScreenshotUtils {
 	 * This method is to convert File to Base64
 	 * @param file
 	 * @return
-	 * @author Karan Parmar 
+	 * @author Vinay
 	 * July 09, 2021
 	 * @throws IOException 
 	 */
@@ -191,7 +199,7 @@ public final class ScreenshotUtils {
 	
 	 	/**
 	 	 * This method will capture screentshot in JPEG to desire location.
-		 * @author Karan Parmar
+		 * @author Vinay
 		 * Jan 11, 2022  
 		 * @return imagepath
 	 	 */

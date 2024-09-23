@@ -1,25 +1,35 @@
 package pageObject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import com.aventstack.extentreports.ExtentTest;
 
 import driver.DriverManager;
 import enums.WaitStrategy;
 import factories.ExplicitWaitFactory;
+import resources.Listeners;
 
 public class BasePage {
+	
+	//private static ExtentTest test=Listeners.getTest();
+	static  Logger LOGGER = LogManager.getLogger(BasePage.class.getName());
 	protected BasePage() {
-
+	
 	}
 
 	protected static void clickOn(By by, WaitStrategy waitstrategy, String elementname) {
+		 ExtentTest test=Listeners.getTest();
 		try {
 			WebElement element = ExplicitWaitFactory.performExplicitWait(waitstrategy, by);
 			element.click();
-
+			test.pass(elementname+" Is Clicked");
 		} catch (Exception exception) {
 			Assert.fail("Getting error while clicking on " + elementname + " and the reason for error is "
 					+ exception.getMessage());
@@ -28,13 +38,14 @@ public class BasePage {
 	}
 	
 	protected static void sendKeysOn(By by, String value, WaitStrategy waitstrategy,String elementname) {
+		 ExtentTest test=Listeners.getTest();
 		try {
 		WebElement element =ExplicitWaitFactory.performExplicitWait(waitstrategy, by);
 		element.sendKeys(value);
-		//LogStatus.pass(elementname+" Entered Successfully", true);
+		test.pass(elementname+" Entered Successfully");
 		}
 		catch(Exception exception) {
-//			LogStatus.fail(elementname+" unable to enter into field", true);
+			test.fail(elementname+" unable to enter into field");
 			Assert.fail("Getting error while sending some values into "+elementname+" and the reason for error is " +exception.getMessage());
 		}
 	}
@@ -70,7 +81,14 @@ public class BasePage {
 			return true;
 		}
 	}
+	
+	public static void refreshPage() {
+		DriverManager.getDriver().navigate().refresh();
+		//LogStatus.info("Refresh Web Browser");
+	}
 
+	
+	
 	/**
 	 * Checks whether the needed WebElement is visible or not.
 	 * 
@@ -92,6 +110,63 @@ public class BasePage {
 					+ elementname + " But Failed Due To " + exception.getMessage());
 		}
 		return flag;
+	}
+	
+	protected static void waitForElement() throws InterruptedException{
+	synchronized (DriverManager.getDriver()) {
+		DriverManager.getDriver().wait(1000);
+	}
+	}
+	
+	/**
+	 * loads a new web page in the existing browser window
+	 * @param url  It accepts String as parameter to load specific url
+	 */
+	protected static void openNewBrowserTab() {
+		((JavascriptExecutor)DriverManager.getDriver()).executeScript("window.open()");	
+	}
+
+	protected static void getCurrentSelectionFromDropDown(By by, String text,String elementname) {
+		WebElement element = DriverManager.getDriver().findElement(by);
+		
+		try {
+			Select select = new Select(element);
+			 select.selectByVisibleText(text);
+			
+			//LogStatus.info(selectedtext + " Is Selected Option On " + elementname);
+		} catch (Exception exception) {
+			Assert.fail("Getting error while getting text from " + elementname + " and the reason for error is "+ exception.getMessage());
+			
+		}
+		
+	}
+	
+	protected static boolean waitForPageToLoad() {
+       
+           
+                JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+                String readyState = (String) js.executeScript("return document.readyState");
+                return "complete".equals(readyState);
+            
+       
+    }
+	/**
+	 * This method is to click using Javascript
+	 * @author Vinay 07 September 2023
+	 * @param by
+	 * @param value
+	 * @param waitstrategy
+	 * @param elementname
+	 */
+	protected static void clickUsingJS(By by, WaitStrategy waitstrategy, String elementname) {
+		try {
+			WebElement element = ExplicitWaitFactory.performExplicitWait(waitstrategy, by);
+			JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
+			jse.executeScript("arguments[0].click();", element);
+			//LogStatus.pass(elementname + " Click Successfully", true);
+		} catch (Exception exception) {
+			Assert.fail("Getting error while clicking on " + elementname + " and the reason for error is "+ exception.getMessage());
+		}
 	}
 	
 	protected  static void sliderFunction(By by,WaitStrategy waitstrategy,String elementname) {
@@ -171,6 +246,7 @@ public class BasePage {
 		try {
 			WebElement element =ExplicitWaitFactory.performExplicitWait(waitstrategy, by);
 			Actions obj=new Actions(DriverManager.getDriver());
+			
 			obj.scrollToElement(element).perform();
 			
 			}
@@ -206,30 +282,33 @@ public class BasePage {
 	 * @param waitstrategy
 	 * @param elementname
 	 */
-	protected static void mouseHoverOn(By by, WaitStrategy waitstrategy, String elementname) {
-		try {
-			WebElement element = ExplicitWaitFactory.performExplicitWait(waitstrategy, by);
-			Actions action = new Actions(DriverManager.getDriver());
-			action.moveToElement(element).perform();
-			//LogStatus.pass(elementname, true);
-		} catch (Exception exception) {
-			Assert.fail("Getting error while performing the action i.e " + elementname + " and the reason for error is " + exception.getMessage());
+	
+		protected static void mouseHoverOn(By by, WaitStrategy waitstrategy, String elementname) {
+			try {
+				WebElement element = ExplicitWaitFactory.performExplicitWait(waitstrategy, by);
+				Actions action = new Actions(DriverManager.getDriver());
+				action.moveToElement(element).perform();
+				//LogStatus.pass(elementname, true);
+			} catch (Exception exception) {
+				Assert.fail("Getting error while performing the action i.e " + elementname + " and the reason for error is " + exception.getMessage());
+			}
 		}
-	}
+	
 	
 	protected static String getTextOnWithoutFail(By by,WaitStrategy waitstrategy,String elementname) {
-		try {
+	//	try {
 		WebElement element =ExplicitWaitFactory.performExplicitWait(waitstrategy, by);
 		//LogStatus.info(element.getText() +" Is Available Text On "+elementname);
 		return element.getText();
-		}
-		catch(Exception exception) {
-			System.out.println("Exception for the Getting Changes in suggetion "+exception.getMessage());
-			//LogStatus.info("Exception for the Getting Changes in suggetion "+exception.getMessage());
-			return null;
-		}
+	//	}
+//		catch(Exception exception) {
+//			System.out.println("Exception for the Getting Changes in suggetion "+exception.getMessage());
+//			//LogStatus.info("Exception for the Getting Changes in suggetion "+exception.getMessage());
+//			return null;
+//		}
 		
 	}
+	
 
 	/**
 	 * Pauses for given seconds.

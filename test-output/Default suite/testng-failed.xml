@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="aertripTestCases.SearchFlights">
+      <class name="aertripTestCases.BookFlight">
         <methods>
           <include name="setUp"/>
-          <include name="searchFlights"/>
+          <include name="searchFlights" invocation-numbers="0"/>
         </methods>
-      </class> <!-- aertripTestCases.SearchFlights -->
+      </class> <!-- aertripTestCases.BookFlight -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

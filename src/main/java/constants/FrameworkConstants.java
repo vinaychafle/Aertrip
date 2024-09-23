@@ -26,8 +26,8 @@ public final class FrameworkConstants {
 		
 	}
 	//Waits
-	private static final int IMPLICITWAIT = 90;
-	private static final int EXPLICITWAIT = 120;
+	private static final int IMPLICITWAIT = 10;
+	private static final int EXPLICITWAIT = 20;
 	//Screenshots
 		public static final String SCREENSHOTPATH = System.getProperty("user.dir")+"/Screenshots";
 		
